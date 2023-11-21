@@ -37,6 +37,7 @@ namespace ProjectZee
         public Projectile projectile;
 
         [Header("Shell")]
+        public bool useShell = true;
         public Shell shell;
 
         #endregion

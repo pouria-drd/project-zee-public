@@ -170,6 +170,7 @@ namespace ProjectZee
         /// </summary>
         private void SpawnShell()
         {
+            if (!gunData.useShell) return;
             Shell newShell = Instantiate(gunData.shell, shellEjectionPoint.position, shellEjectionPoint.rotation);
         }
 
