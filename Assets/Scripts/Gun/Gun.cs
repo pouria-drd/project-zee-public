@@ -118,10 +118,13 @@ namespace ProjectZee
         /// </summary>
         private void Recoil()
         {
+            // Apply recoil to the gun's position.
             transform.localPosition -= transform.forward * Random.Range(gunData.kickMinMax.x, gunData.kickMinMax.y);
 
-            /*recoilAngle += Random.Range(gunData.recoilAngleMinMax.x, gunData.recoilAngleMinMax.y);
-            Mathf.Clamp(recoilAngle, 0f, 30f);*/
+            // Apply recoil to the gun's rotation.
+            recoilAngle += Random.Range(gunData.recoilAngleMinMax.x, gunData.recoilAngleMinMax.y);
+            recoilAngle = Mathf.Clamp(recoilAngle, 0f, 30f);
+            transform.localEulerAngles = new Vector3(-recoilAngle, transform.localEulerAngles.y, transform.localEulerAngles.z);
         }
 
         /// <summary>
@@ -129,10 +132,12 @@ namespace ProjectZee
         /// </summary>
         private void ResetRecoil()
         {
+            // Smoothly reset the gun's position.
             transform.localPosition = Vector3.SmoothDamp(transform.localPosition, Vector3.zero, ref recoilSmoothDampVelocity, gunData.recoilSettleTime);
 
-            /*recoilAngle = Mathf.SmoothDamp(recoilAngle, 0, ref recoilAngleSmoothDampVelocity, gunData.recoilRotationSettleTime);
-            transform.localEulerAngles = transform.localEulerAngles + Vector3.left * recoilAngle;*/
+            // Smoothly reset the gun's rotation.
+            recoilAngle = Mathf.SmoothDamp(recoilAngle, 0, ref recoilAngleSmoothDampVelocity, gunData.recoilRotationSettleTime);
+            transform.localEulerAngles = new Vector3(-recoilAngle, transform.localEulerAngles.y, transform.localEulerAngles.z);
         }
 
         /// <summary>
