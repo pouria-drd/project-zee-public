@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac9628490813134c9b8774b25bf7271, type: 3}
   m_Name: MG-3 Data
   m_EditorClassIdentifier: 
-  fireMode: 0
   gunType: 1
+  allowedFireModes: 000000000100000002000000
   shootAudio: {fileID: 8300000, guid: c6fdb98933dd3cf4788f106c95496222, type: 3}
   reloadAudio: {fileID: 0}
+  fireModeAudio:
+  - {fileID: 8300000, guid: dc4babd15ba3e4848bf5507bece2edf9, type: 3}
+  - {fileID: 8300000, guid: 6eb996f2a871d9c4da9997243d8f17e7, type: 3}
+  - {fileID: 8300000, guid: 565fa3415326b9b448a9b88debe8ee7b, type: 3}
   kickMinMax: {x: 0.025, y: 0.05}
   recoilAngleMinMax: {x: 5, y: 10}
   recoilSettleTime: 0.1
