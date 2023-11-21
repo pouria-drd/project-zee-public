@@ -20,6 +20,7 @@ namespace ProjectZee
         [Header("Sounds")]
         public AudioClip shootAudio;
         public AudioClip reloadAudio;
+        public AudioClip emptyMagShootAudio;
         public AudioClip[] fireModeAudio;
 
         [Header("Recoil")]
