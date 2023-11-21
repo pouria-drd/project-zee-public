@@ -51,7 +51,7 @@ namespace ProjectZee
 
         private void Update()
         {
-            // ResetRecoil();
+            ResetRecoil();
         }
 
         private void LateUpdate()
@@ -93,7 +93,7 @@ namespace ProjectZee
                 ActivateMuzzleLight();
                 Invoke(nameof(DeactivateMuzzleLight), gunData.fireRateMs / 1000f);
 
-                // Recoil();
+                Recoil();
 
                 // Play shoot sound;
                 AudioManager.instance.PlaySound(gunData.shootAudio, transform.position);
@@ -123,13 +123,12 @@ namespace ProjectZee
         /// </summary>
         private void Recoil()
         {
-            // Apply recoil to the gun's position.
-            transform.localPosition -= transform.forward * Random.Range(gunData.kickMinMax.x, gunData.kickMinMax.y);
-
-            // Apply recoil to the gun's rotation.
-            recoilAngle += Random.Range(gunData.recoilAngleMinMax.x, gunData.recoilAngleMinMax.y);
-            recoilAngle = Mathf.Clamp(recoilAngle, 0f, 30f);
-            transform.localEulerAngles = new Vector3(-recoilAngle, transform.localEulerAngles.y, transform.localEulerAngles.z);
+            // Recoil in x, y, x axis. (kick back in z axis)
+            if (gunData.useRecoil)
+            {
+                Vector3 recoil = new(gunData.recoilPattern.x, gunData.recoilPattern.y, -gunData.recoilPattern.z);
+                transform.localPosition += recoil;
+            }
         }
 
         /// <summary>
@@ -139,10 +138,6 @@ namespace ProjectZee
         {
             // Smoothly reset the gun's position.
             transform.localPosition = Vector3.SmoothDamp(transform.localPosition, Vector3.zero, ref recoilSmoothDampVelocity, gunData.recoilSettleTime);
-
-            // Smoothly reset the gun's rotation.
-            recoilAngle = Mathf.SmoothDamp(recoilAngle, 0, ref recoilAngleSmoothDampVelocity, gunData.recoilRotationSettleTime);
-            transform.localEulerAngles = new Vector3(-recoilAngle, transform.localEulerAngles.y, transform.localEulerAngles.z);
         }
 
         private void WeaponSway()

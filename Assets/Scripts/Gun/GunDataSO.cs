@@ -21,10 +21,9 @@ namespace ProjectZee
         public AudioClip[] fireModeAudio;
 
         [Header("Recoil")]
-        public Vector2 kickMinMax = new(0.025f, 0.05f);
-        public Vector2 recoilAngleMinMax = new(5f, 10f);
-        [Range(0.01f, 1f)] public float recoilSettleTime = 0.1f;
-        [Range(0.01f, 1f)] public float recoilRotationSettleTime = 0.1f;
+        public bool useRecoil = true;
+        public Vector3 recoilPattern = new(0.015f, 0.015f, 0.025f);
+        [Range(0.1f, 1f)] public float recoilSettleTime = 0.1f;
 
         [Header("Weapon Sway")]
         [Range(1f, 10f)] public float weaponSwayAmount = 1f;

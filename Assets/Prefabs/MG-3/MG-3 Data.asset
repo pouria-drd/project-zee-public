@@ -23,13 +23,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: dc4babd15ba3e4848bf5507bece2edf9, type: 3}
   - {fileID: 8300000, guid: 6eb996f2a871d9c4da9997243d8f17e7, type: 3}
   - {fileID: 8300000, guid: 565fa3415326b9b448a9b88debe8ee7b, type: 3}
-  kickMinMax: {x: 0.05, y: 0.08}
-  recoilAngleMinMax: {x: 10, y: 15}
-  recoilSettleTime: 0.05
-  recoilRotationSettleTime: 0.02
+  useRecoil: 1
+  recoilPattern: {x: 0.015, y: 0.015, z: 0.025}
+  recoilSettleTime: 0.1
   weaponSwayAmount: 1.5
   addBulletSpread: 1
-  spread: 0.025
+  spread: 0.03
   burstCount: 3
   projectile: {fileID: 6965850206616007140, guid: 33afebadbc9cbb44cbc02e33c03d01e9,
     type: 3}
