@@ -11,6 +11,8 @@ namespace ProjectZee
         public GunType gunType = GunType.Assault;
         public FireMode[] allowedFireModes;
         [Space]
+        public Vector3 startPosition;
+        [Space]
         [Range(1f, 100f)] public float maxRange = 25f;
         [Range(10f, 3000f)] public float fireRateMs = 100f;
         [Range(10f, 100f)] public float projectileVelocity = 35f;

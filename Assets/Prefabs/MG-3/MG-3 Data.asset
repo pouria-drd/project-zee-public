@@ -13,20 +13,20 @@ MonoBehaviour:
   m_Name: MG-3 Data
   m_EditorClassIdentifier: 
   gunType: 1
-  allowedFireModes: 000000000100000002000000
+  allowedFireModes: 0000000002000000
+  startPosition: {x: -0.025, y: 0.1, z: -0.16}
   maxRange: 15
-  fireRateMs: 75
-  projectileVelocity: 35
+  fireRateMs: 80
+  projectileVelocity: 30
   shootAudio: {fileID: 8300000, guid: c6fdb98933dd3cf4788f106c95496222, type: 3}
   reloadAudio: {fileID: 0}
   fireModeAudio:
   - {fileID: 8300000, guid: dc4babd15ba3e4848bf5507bece2edf9, type: 3}
-  - {fileID: 8300000, guid: 6eb996f2a871d9c4da9997243d8f17e7, type: 3}
   - {fileID: 8300000, guid: 565fa3415326b9b448a9b88debe8ee7b, type: 3}
   useRecoil: 1
-  recoilPattern: {x: 0.015, y: 0.015, z: 0.025}
+  recoilPattern: {x: 0.01, y: 0.01, z: 0.01}
   recoilSettleTime: 0.1
-  weaponSwayAmount: 1.5
+  weaponSwayAmount: 1.6
   addBulletSpread: 1
   spread: 0.03
   burstCount: 3

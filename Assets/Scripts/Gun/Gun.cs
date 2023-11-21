@@ -26,6 +26,7 @@ namespace ProjectZee
 
         private bool triggerReleasedSinceLastShot;
 
+        private Vector3 originalPosition;
         private Vector3 recoilSmoothDampVelocity;
 
         private FireMode fireMode;
@@ -38,15 +39,7 @@ namespace ProjectZee
 
         private void Start()
         {
-            shotsRemainingInBurst = gunData.burstCount;
-
-            // Set the initial mode to the first allowed mode in the array
-            if (gunData.allowedFireModes.Length > 0)
-            {
-                SetFireMode(gunData.allowedFireModes[currentFireModeIndex], false);
-            }
-
-            DeactivateMuzzleLight();
+            SetupGun();
         }
 
         private void Update()
@@ -64,6 +57,24 @@ namespace ProjectZee
         // ----------------------------------------------------------------------
 
         #region Custom Methods
+
+        /// <summary>
+        /// Setup initial information for gun when game is about to start.
+        /// </summary>
+        private void SetupGun()
+        {
+            shotsRemainingInBurst = gunData.burstCount;
+
+            originalPosition = gunData.startPosition;
+
+            // Set the initial mode to the first allowed mode in the array
+            if (gunData.allowedFireModes.Length > 0)
+            {
+                SetFireMode(gunData.allowedFireModes[currentFireModeIndex], false);
+            }
+
+            DeactivateMuzzleLight();
+        }
 
         /// <summary>
         /// Handles the shooting logic by checking the fire mode, rate, and ammo,
@@ -137,7 +148,7 @@ namespace ProjectZee
         private void ResetRecoil()
         {
             // Smoothly reset the gun's position.
-            transform.localPosition = Vector3.SmoothDamp(transform.localPosition, Vector3.zero, ref recoilSmoothDampVelocity, gunData.recoilSettleTime);
+            transform.localPosition = Vector3.SmoothDamp(transform.localPosition, originalPosition, ref recoilSmoothDampVelocity, gunData.recoilSettleTime);
         }
 
         private void WeaponSway()
