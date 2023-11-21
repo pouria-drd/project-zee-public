@@ -14,7 +14,7 @@ namespace ProjectZee
         public Vector3 startPosition;
         [Space]
         [Range(1f, 100f)] public float maxRange = 25f;
-        [Range(10f, 3000f)] public float fireRateMs = 100f;
+        [Range(50f, 3000f)] public float fireRateMs = 100f;
         [Range(10f, 100f)] public float projectileVelocity = 35f;
 
         [Header("Sounds")]

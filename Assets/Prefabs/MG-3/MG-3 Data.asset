@@ -18,8 +18,9 @@ MonoBehaviour:
   maxRange: 15
   fireRateMs: 80
   projectileVelocity: 30
-  shootAudio: {fileID: 8300000, guid: c6fdb98933dd3cf4788f106c95496222, type: 3}
+  shootAudio: {fileID: 8300000, guid: 3e84d3cd5cc1ff544a5bbb824d7d280d, type: 3}
   reloadAudio: {fileID: 0}
+  emptyMagShootAudio: {fileID: 0}
   fireModeAudio:
   - {fileID: 8300000, guid: dc4babd15ba3e4848bf5507bece2edf9, type: 3}
   - {fileID: 8300000, guid: 565fa3415326b9b448a9b88debe8ee7b, type: 3}
