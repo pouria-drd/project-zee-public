@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ac9628490813134c9b8774b25bf7271, type: 3}
+  m_Name: MG-3 Data
+  m_EditorClassIdentifier: 
+  gunType: 1
+  allowedFireModes: 0000000002000000
+  startPosition: {x: -0.025, y: 0.1, z: -0.16}
+  maxRange: 15
+  fireRateMs: 70
+  projectileVelocity: 30
+  shootAudio: {fileID: 8300000, guid: 75551a8dc4065994587cddffcefb6d5f, type: 3}
+  reloadAudio: {fileID: 0}
+  emptyMagShootAudio: {fileID: 0}
+  fireModeAudio:
+  - {fileID: 8300000, guid: dc4babd15ba3e4848bf5507bece2edf9, type: 3}
+  - {fileID: 8300000, guid: 565fa3415326b9b448a9b88debe8ee7b, type: 3}
+  useRecoil: 1
+  recoilPattern: {x: 0.01, y: 0.01, z: 0.01}
+  recoilSettleTime: 0.1
+  weaponSwayAmount: 1.6
+  addBulletSpread: 1
+  spread: 0.03
+  burstCount: 3
+  projectile: {fileID: 7170507941698913542, guid: 83f36827c4989c249b8b92c53822e6a9,
+    type: 3}
+  useShell: 1
+  shell: {fileID: -8446219658262629995, guid: 49f0afef89faa4a4098bb9515aff9f59, type: 3}

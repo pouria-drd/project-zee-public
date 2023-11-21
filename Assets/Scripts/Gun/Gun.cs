@@ -102,7 +102,7 @@ namespace ProjectZee
                 // Play muzzle flash.
                 muzzleFlash.Play();
                 ActivateMuzzleLight();
-                Invoke(nameof(DeactivateMuzzleLight), gunData.fireRateMs / 1000f);
+                Invoke(nameof(DeactivateMuzzleLight), 0.1f);
 
                 Recoil();
 
