@@ -26,11 +26,12 @@ MonoBehaviour:
   kickMinMax: {x: 0.05, y: 0.08}
   recoilAngleMinMax: {x: 10, y: 15}
   recoilSettleTime: 0.05
-  recoilRotationSettleTime: 0.015
+  recoilRotationSettleTime: 0.02
+  weaponSwayAmount: 1.5
   addBulletSpread: 1
   spread: 0.025
   burstCount: 3
   projectile: {fileID: 6965850206616007140, guid: 33afebadbc9cbb44cbc02e33c03d01e9,
     type: 3}
-  useshell: 1
+  useShell: 1
   shell: {fileID: 9108772269251759029, guid: c59ed099998d68e4b9843d1ecad20738, type: 3}

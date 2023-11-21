@@ -54,6 +54,11 @@ namespace ProjectZee
             // ResetRecoil();
         }
 
+        private void LateUpdate()
+        {
+            WeaponSway();
+        }
+
         #endregion
 
         // ----------------------------------------------------------------------
@@ -138,6 +143,16 @@ namespace ProjectZee
             // Smoothly reset the gun's rotation.
             recoilAngle = Mathf.SmoothDamp(recoilAngle, 0, ref recoilAngleSmoothDampVelocity, gunData.recoilRotationSettleTime);
             transform.localEulerAngles = new Vector3(-recoilAngle, transform.localEulerAngles.y, transform.localEulerAngles.z);
+        }
+
+        private void WeaponSway()
+        {
+            Vector2 mouseAxis = new(
+                Input.GetAxisRaw("Mouse X"),
+                Input.GetAxisRaw("Mouse Y")
+                );
+
+            transform.localPosition += (Vector3)mouseAxis * -gunData.weaponSwayAmount / 1000f;
         }
 
         /// <summary>

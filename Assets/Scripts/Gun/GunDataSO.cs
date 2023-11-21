@@ -26,6 +26,9 @@ namespace ProjectZee
         [Range(0.01f, 1f)] public float recoilSettleTime = 0.1f;
         [Range(0.01f, 1f)] public float recoilRotationSettleTime = 0.1f;
 
+        [Header("Weapon Sway")]
+        [Range(1f, 10f)] public float weaponSwayAmount = 1f;
+
         [Header("Bullet Spread")]
         public bool addBulletSpread = true;
         [Range(0.01f, 0.1f)] public float spread = 0.04f;
