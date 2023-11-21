@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunType: 1
   allowedFireModes: 000000000100000002000000
+  maxRange: 15
+  fireRateMs: 75
+  projectileVelocity: 35
   shootAudio: {fileID: 8300000, guid: c6fdb98933dd3cf4788f106c95496222, type: 3}
   reloadAudio: {fileID: 0}
   fireModeAudio:
@@ -24,9 +27,8 @@ MonoBehaviour:
   recoilAngleMinMax: {x: 5, y: 10}
   recoilSettleTime: 0.1
   recoilRotationSettleTime: 0.01
-  maxRange: 15
-  fireRateMs: 75
-  projectileVelocity: 35
+  addBulletSpread: 1
+  spread: 0.025
   burstCount: 3
   projectile: {fileID: 6965850206616007140, guid: 33afebadbc9cbb44cbc02e33c03d01e9,
     type: 3}

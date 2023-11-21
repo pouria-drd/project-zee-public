@@ -81,18 +81,17 @@ namespace ProjectZee
                 nextShotTime = Time.time + gunData.fireRateMs / 1000f;
 
                 SpawnProjectile();
-
-                // Play shoot sound;
-                AudioManager.instance.PlaySound(gunData.shootAudio, transform.position);
-
-                Recoil();
+                SpawnShell();
 
                 // Play muzzle flash.
                 muzzleFlash.Play();
                 ActivateMuzzleLight();
                 Invoke(nameof(DeactivateMuzzleLight), gunData.fireRateMs / 1000f);
 
-                SpawnShell();
+                Recoil();
+
+                // Play shoot sound;
+                AudioManager.instance.PlaySound(gunData.shootAudio, transform.position);
             }
         }
 
@@ -112,6 +111,77 @@ namespace ProjectZee
         {
             shotsRemainingInBurst = gunData.burstCount;
             triggerReleasedSinceLastShot = true;
+        }
+
+        /// <summary>
+        /// Applies the recoil logic by adjusting the gun's position based on recoil values.
+        /// </summary>
+        private void Recoil()
+        {
+            transform.localPosition -= transform.forward * Random.Range(gunData.kickMinMax.x, gunData.kickMinMax.y);
+
+            /*recoilAngle += Random.Range(gunData.recoilAngleMinMax.x, gunData.recoilAngleMinMax.y);
+            Mathf.Clamp(recoilAngle, 0f, 30f);*/
+        }
+
+        /// <summary>
+        /// Resets the recoil by smoothly transforming the gun's position back to its original state.
+        /// </summary>
+        private void ResetRecoil()
+        {
+            transform.localPosition = Vector3.SmoothDamp(transform.localPosition, Vector3.zero, ref recoilSmoothDampVelocity, gunData.recoilSettleTime);
+
+            /*recoilAngle = Mathf.SmoothDamp(recoilAngle, 0, ref recoilAngleSmoothDampVelocity, gunData.recoilRotationSettleTime);
+            transform.localEulerAngles = transform.localEulerAngles + Vector3.left * recoilAngle;*/
+        }
+
+        /// <summary>
+        /// Spawns projectiles from the projectile spawn points based on the gun's configuration.
+        /// </summary>
+        private void SpawnProjectile()
+        {
+            for (int i = 0; i < projectileSpawnPoints.Length; i++)
+            {
+                // Apply spread to the projectile direction
+                Vector3 spreadDirection;
+
+                if (gunData.addBulletSpread) spreadDirection = projectileSpawnPoints[i].forward + Random.insideUnitSphere * gunData.spread;
+                else spreadDirection = projectileSpawnPoints[i].forward + Random.insideUnitSphere * 0;
+
+
+                Projectile newProjectile = Instantiate(
+                    gunData.projectile,
+                    projectileSpawnPoints[i].position,
+                    Quaternion.LookRotation(spreadDirection)
+                    );
+
+                newProjectile.SetProjectileRange(gunData.maxRange);
+                newProjectile.SetProjectileSpeed(gunData.projectileVelocity);
+            }
+        }
+
+        /// <summary>
+        /// Spawns shell objects from the shell ejection point based on the gun's configuration.
+        /// </summary>
+        private void SpawnShell()
+        {
+            Shell newShell = Instantiate(gunData.shell, shellEjectionPoint.position, shellEjectionPoint.rotation);
+        }
+
+        /// <summary>
+        /// Activates the muzzle light game object.
+        /// </summary>
+        private void ActivateMuzzleLight()
+        {
+            if (!muzzleLight.activeInHierarchy) muzzleLight.SetActive(true);
+        }
+
+        /// <summary>
+        /// Deactivates the muzzle light game object.
+        /// </summary
+        private void DeactivateMuzzleLight()
+        {
+            if (muzzleLight.activeInHierarchy) muzzleLight.SetActive(false);
         }
 
         /// <summary>
@@ -169,66 +239,6 @@ namespace ProjectZee
                     transform.position
                     );
             }
-        }
-
-        /// <summary>
-        /// Applies the recoil logic by adjusting the gun's position based on recoil values.
-        /// </summary>
-        private void Recoil()
-        {
-            transform.localPosition -= transform.forward * Random.Range(gunData.kickMinMax.x, gunData.kickMinMax.y);
-
-            /*recoilAngle += Random.Range(gunData.recoilAngleMinMax.x, gunData.recoilAngleMinMax.y);
-            Mathf.Clamp(recoilAngle, 0f, 30f);*/
-        }
-
-        /// <summary>
-        /// Resets the recoil by smoothly transforming the gun's position back to its original state.
-        /// </summary>
-        private void ResetRecoil()
-        {
-            transform.localPosition = Vector3.SmoothDamp(transform.localPosition, Vector3.zero, ref recoilSmoothDampVelocity, gunData.recoilSettleTime);
-
-            /*recoilAngle = Mathf.SmoothDamp(recoilAngle, 0, ref recoilAngleSmoothDampVelocity, gunData.recoilRotationSettleTime);
-            transform.localEulerAngles = transform.localEulerAngles + Vector3.left * recoilAngle;*/
-        }
-
-        /// <summary>
-        /// Spawns projectiles from the projectile spawn points based on the gun's configuration.
-        /// </summary>
-        private void SpawnProjectile()
-        {
-            for (int i = 0; i < projectileSpawnPoints.Length; i++)
-            {
-                Projectile newProjectile = Instantiate(gunData.projectile, projectileSpawnPoints[i].position, projectileSpawnPoints[i].rotation);
-
-                newProjectile.SetProjectileRange(gunData.maxRange);
-                newProjectile.SetProjectileSpeed(gunData.projectileVelocity);
-            }
-        }
-
-        /// <summary>
-        /// Spawns shell objects from the shell ejection point based on the gun's configuration.
-        /// </summary>
-        private void SpawnShell()
-        {
-            Shell newShell = Instantiate(gunData.shell, shellEjectionPoint.position, shellEjectionPoint.rotation);
-        }
-
-        /// <summary>
-        /// Activates the muzzle light game object.
-        /// </summary>
-        private void ActivateMuzzleLight()
-        {
-            if (!muzzleLight.activeInHierarchy) muzzleLight.SetActive(true);
-        }
-
-        /// <summary>
-        /// Deactivates the muzzle light game object.
-        /// </summary
-        private void DeactivateMuzzleLight()
-        {
-            if (muzzleLight.activeInHierarchy) muzzleLight.SetActive(false);
         }
 
         #endregion
