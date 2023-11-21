@@ -51,7 +51,7 @@ namespace ProjectZee
 
         private void Update()
         {
-            ResetRecoil();
+            // ResetRecoil();
         }
 
         #endregion
@@ -88,7 +88,7 @@ namespace ProjectZee
                 ActivateMuzzleLight();
                 Invoke(nameof(DeactivateMuzzleLight), gunData.fireRateMs / 1000f);
 
-                Recoil();
+                // Recoil();
 
                 // Play shoot sound;
                 AudioManager.instance.PlaySound(gunData.shootAudio, transform.position);
@@ -122,9 +122,9 @@ namespace ProjectZee
             transform.localPosition -= transform.forward * Random.Range(gunData.kickMinMax.x, gunData.kickMinMax.y);
 
             // Apply recoil to the gun's rotation.
-            /*recoilAngle += Random.Range(gunData.recoilAngleMinMax.x, gunData.recoilAngleMinMax.y);
+            recoilAngle += Random.Range(gunData.recoilAngleMinMax.x, gunData.recoilAngleMinMax.y);
             recoilAngle = Mathf.Clamp(recoilAngle, 0f, 30f);
-            transform.localEulerAngles = new Vector3(-recoilAngle, transform.localEulerAngles.y, transform.localEulerAngles.z);*/
+            transform.localEulerAngles = new Vector3(-recoilAngle, transform.localEulerAngles.y, transform.localEulerAngles.z);
         }
 
         /// <summary>
@@ -136,8 +136,8 @@ namespace ProjectZee
             transform.localPosition = Vector3.SmoothDamp(transform.localPosition, Vector3.zero, ref recoilSmoothDampVelocity, gunData.recoilSettleTime);
 
             // Smoothly reset the gun's rotation.
-            /*recoilAngle = Mathf.SmoothDamp(recoilAngle, 0, ref recoilAngleSmoothDampVelocity, gunData.recoilRotationSettleTime);
-            transform.localEulerAngles = new Vector3(-recoilAngle, transform.localEulerAngles.y, transform.localEulerAngles.z);*/
+            recoilAngle = Mathf.SmoothDamp(recoilAngle, 0, ref recoilAngleSmoothDampVelocity, gunData.recoilRotationSettleTime);
+            transform.localEulerAngles = new Vector3(-recoilAngle, transform.localEulerAngles.y, transform.localEulerAngles.z);
         }
 
         /// <summary>
