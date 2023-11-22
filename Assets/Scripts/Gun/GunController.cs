@@ -5,6 +5,7 @@ namespace ProjectZee
     public class GunController : MonoBehaviour
     {
         #region Variables
+
         [Header("Gun UI")]
         [SerializeField] private GameObject crossHair;
 
