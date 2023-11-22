@@ -979,6 +979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootKey: 323
+  aimKey: 324
   changeFireModeKey: 98
   weaponHolder: {fileID: 1053858329}
   startingGun: {fileID: 8805013803079896689, guid: 79fc721397712ac45b7c10f975bb5a47,

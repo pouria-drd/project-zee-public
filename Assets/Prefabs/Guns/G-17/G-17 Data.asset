@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunType: 5
   allowedFireModes: 02000000
-  startPosition: {x: -0.05, y: 0.025, z: -0.2}
+  normalLocalPosition: {x: -0.07, y: 0.035, z: -0.25}
+  aimingLocalPosition: {x: -0.1525, y: 0.075, z: -0.2661}
+  aimSpeed: 10
   maxRange: 7.5
   fireRateMs: 200
   projectileVelocity: 35
@@ -24,7 +26,8 @@ MonoBehaviour:
   fireModeAudio:
   - {fileID: 8300000, guid: fbf2887805407bf478a4b256ebd74610, type: 3}
   useRecoil: 1
-  recoilPattern: {x: 0.015, y: 0.015, z: 0.025}
+  kickForce: 0.05
+  recoilPattern: {x: -0.0025, y: 0.03, z: 0.025}
   recoilSettleTime: 0.1
   weaponSwayAmount: 1
   addBulletSpread: 1

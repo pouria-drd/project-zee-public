@@ -11,8 +11,10 @@ namespace ProjectZee
         public GunType gunType = GunType.Assault;
         public FireMode[] allowedFireModes;
         [Space]
-        public Vector3 startPosition;
+        public Vector3 normalLocalPosition;
+        public Vector3 aimingLocalPosition;
         [Space]
+        [Range(1f, 100f)] public float aimSpeed = 10f;
         [Range(1f, 100f)] public float maxRange = 25f;
         [Range(50f, 3000f)] public float fireRateMs = 100f;
         [Range(10f, 100f)] public float projectileVelocity = 35f;
@@ -25,6 +27,7 @@ namespace ProjectZee
 
         [Header("Recoil")]
         public bool useRecoil = true;
+        [Range(0.01f, 1f)] public float kickForce = 0.1f;
         public Vector3 recoilPattern = new(0.015f, 0.015f, 0.025f);
         [Range(0.1f, 1f)] public float recoilSettleTime = 0.1f;
 

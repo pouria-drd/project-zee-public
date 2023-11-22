@@ -8,6 +8,8 @@ namespace ProjectZee
 
         [Header("Key Binds")]
         [SerializeField] private KeyCode shootKey = KeyCode.Mouse0;
+        [SerializeField] private bool holdKeyForAiming = false;
+        [SerializeField] private KeyCode aimKey = KeyCode.Mouse1;
         [SerializeField] private KeyCode changeFireModeKey = KeyCode.B;
 
         [Header("Weapon")]
@@ -45,8 +47,9 @@ namespace ProjectZee
 
             // Check for the 'B' key press to cycle through modes
             if (Input.GetKeyDown(changeFireModeKey)) ChangeFireMode();
-        }
 
+            HandleAiming();
+        }
 
         public void EquipGun(Gun gunToEquip)
         {
@@ -67,6 +70,22 @@ namespace ProjectZee
         private void ChangeFireMode()
         {
             if (equippedGun) equippedGun.CycleFireMode();
+        }
+
+        private void HandleAiming()
+        {
+            if (!equippedGun) return;
+
+            // Check for mouse input to toggle or hold aim key for aiming gun.
+            if (holdKeyForAiming)
+            {
+                if (Input.GetKeyDown(aimKey)) equippedGun.SetAimingStatus(true);
+                else if (Input.GetKeyUp(aimKey)) equippedGun.SetAimingStatus(false);
+            }
+            else
+            {
+                if (Input.GetKeyDown(aimKey)) equippedGun.ToggleAimingStatus();
+            }
         }
 
         #endregion

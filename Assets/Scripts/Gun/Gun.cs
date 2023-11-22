@@ -24,9 +24,10 @@ namespace ProjectZee
         private int currentFireModeIndex = 0;
         private int shotsRemainingInBurst;
 
+        private bool isAiming;
         private bool triggerReleasedSinceLastShot;
 
-        private Vector3 originalPosition;
+        private Vector3 targetPosition;
         private Vector3 recoilSmoothDampVelocity;
 
         private FireMode fireMode;
@@ -44,7 +45,7 @@ namespace ProjectZee
 
         private void Update()
         {
-            ResetRecoil();
+            UpdateGunPosition();
         }
 
         private void LateUpdate()
@@ -65,7 +66,7 @@ namespace ProjectZee
         {
             shotsRemainingInBurst = gunData.burstCount;
 
-            originalPosition = gunData.startPosition;
+            targetPosition = gunData.normalLocalPosition;
 
             // Set the initial mode to the first allowed mode in the array
             if (gunData.allowedFireModes.Length > 0)
@@ -137,18 +138,34 @@ namespace ProjectZee
             // Recoil in x, y, x axis. (kick back in z axis)
             if (gunData.useRecoil)
             {
-                Vector3 recoil = new(gunData.recoilPattern.x, gunData.recoilPattern.y, -gunData.recoilPattern.z);
-                transform.localPosition += recoil;
+                // Vector3 recoil = new(gunData.recoilPattern.x, gunData.recoilPattern.y, -gunData.recoilPattern.z);
+
+                // Gun kick back in z axis.
+                transform.localPosition -= Vector3.forward * gunData.kickForce;
             }
         }
 
         /// <summary>
-        /// Resets the recoil by smoothly transforming the gun's position back to its original state.
+        /// Smoothly controls the gun position based on aiming status.
         /// </summary>
-        private void ResetRecoil()
+        private void UpdateGunPosition()
         {
-            // Smoothly reset the gun's position.
-            transform.localPosition = Vector3.SmoothDamp(transform.localPosition, originalPosition, ref recoilSmoothDampVelocity, gunData.recoilSettleTime);
+            if (isAiming)
+            {
+                // When aiming, smoothly move the gun to the aim position.
+                Vector3 target = gunData.aimingLocalPosition;
+
+                // Use Lerp for smooth interpolation.
+                transform.localPosition = Vector3.Lerp(transform.localPosition, target, Time.deltaTime * gunData.aimSpeed);
+            }
+            else
+            {
+                // When not aiming, bring the gun back to its original position with smooth damping.
+                Vector3 target = gunData.normalLocalPosition;
+
+                // Use SmoothDamp for smooth transition.
+                transform.localPosition = Vector3.SmoothDamp(transform.localPosition, target, ref recoilSmoothDampVelocity, gunData.recoilSettleTime);
+            }
         }
 
         private void WeaponSway()
@@ -219,7 +236,7 @@ namespace ProjectZee
             // Increment the current mod index.
             currentFireModeIndex++;
 
-            // If the index goes beyond the array bounds, reset to 0
+            // If the index goes beyond the array bounds, reset to 0.
             if (currentFireModeIndex >= gunData.allowedFireModes.Length)
             {
                 currentFireModeIndex = 0;
@@ -254,10 +271,10 @@ namespace ProjectZee
                     fireMode = FireMode.Single;
                     Debug.Log("Single mode selected");
                     break;
-                    // Add cases for more mods as needed
+                    // Add cases for more mods as needed.
             }
 
-            // Play chnageFireMode sound if is allowed.
+            // Play change FireMode sound if is allowed.
             if (playChangeSound)
             {
                 AudioManager.instance.PlaySound
@@ -266,6 +283,23 @@ namespace ProjectZee
                     transform.position
                     );
             }
+        }
+
+        /// <summary>
+        /// Set the aiming status of the gun.
+        /// </summary>
+        /// <param name="status">The aiming status to set (true for aiming, false for not aiming).</param>
+        public void SetAimingStatus(bool status)
+        {
+            isAiming = status;
+        }
+
+        /// <summary>
+        /// Toggle the aiming status of the gun.
+        /// </summary>
+        public void ToggleAimingStatus()
+        {
+            SetAimingStatus(!isAiming);
         }
 
         #endregion
