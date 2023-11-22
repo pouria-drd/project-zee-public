@@ -141,7 +141,8 @@ namespace ProjectZee
                 // Vector3 recoil = new(gunData.recoilPattern.x, gunData.recoilPattern.y, -gunData.recoilPattern.z);
 
                 // Gun kick back in z axis.
-                transform.localPosition -= Vector3.forward * gunData.kickForce;
+                if (isAiming) transform.localPosition -= Vector3.forward * gunData.aimKickForce;
+                else transform.localPosition -= Vector3.forward * gunData.normalKickForce;
             }
         }
 

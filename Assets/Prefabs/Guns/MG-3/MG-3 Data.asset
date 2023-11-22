@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunType: 1
   allowedFireModes: 0000000002000000
-  startPosition: {x: -0.025, y: 0.1, z: -0.16}
+  normalLocalPosition: {x: -0.11, y: 0.15, z: -0.25}
+  aimingLocalPosition: {x: -0.1595, y: 0.2021, z: -0.4346}
+  aimSpeed: 10
   maxRange: 15
   fireRateMs: 70
   projectileVelocity: 30
@@ -25,6 +27,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: dc4babd15ba3e4848bf5507bece2edf9, type: 3}
   - {fileID: 8300000, guid: 565fa3415326b9b448a9b88debe8ee7b, type: 3}
   useRecoil: 1
+  normalKickForce: 0.03
+  aimKickForce: 0.01
   recoilPattern: {x: 0.01, y: 0.01, z: 0.01}
   recoilSettleTime: 0.1
   weaponSwayAmount: 1.6

@@ -27,7 +27,8 @@ namespace ProjectZee
 
         [Header("Recoil")]
         public bool useRecoil = true;
-        [Range(0.01f, 1f)] public float kickForce = 0.1f;
+        [Range(0.01f, 1f)] public float normalKickForce = 0.07f;
+        [Range(0.01f, 1f)] public float aimKickForce = 0.035f;
         public Vector3 recoilPattern = new(0.015f, 0.015f, 0.025f);
         [Range(0.1f, 1f)] public float recoilSettleTime = 0.1f;
 
