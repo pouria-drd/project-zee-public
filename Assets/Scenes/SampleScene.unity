@@ -978,6 +978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 016d7899eda95b64c953765e1c6cf955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crossHair: {fileID: 1813889870}
   shootKey: 323
   holdKeyForAiming: 0
   aimKey: 324

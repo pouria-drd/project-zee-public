@@ -5,6 +5,8 @@ namespace ProjectZee
     public class GunController : MonoBehaviour
     {
         #region Variables
+        [Header("Gun UI")]
+        [SerializeField] private GameObject crossHair;
 
         [Header("Key Binds")]
         [SerializeField] private KeyCode shootKey = KeyCode.Mouse0;
@@ -86,6 +88,9 @@ namespace ProjectZee
             {
                 if (Input.GetKeyDown(aimKey)) equippedGun.ToggleAimingStatus();
             }
+
+            if (equippedGun.IsAiming) crossHair.SetActive(false);
+            else crossHair.SetActive(true);
         }
 
         #endregion

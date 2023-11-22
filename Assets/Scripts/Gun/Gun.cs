@@ -303,6 +303,8 @@ namespace ProjectZee
             SetAimingStatus(!isAiming);
         }
 
+        public bool IsAiming { get { return isAiming; } }
+
         #endregion
 
         // ----------------------------------------------------------------------
