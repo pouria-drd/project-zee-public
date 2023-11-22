@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunType: 1
   allowedFireModes: 0000000002000000
-  normalLocalPosition: {x: -0.09, y: 0.045, z: -0.3}
+  normalLocalPosition: {x: -0.1, y: 0.15, z: -0.25}
   aimingLocalPosition: {x: -0.1595, y: 0.2021, z: -0.4346}
   aimSpeed: 10
   maxRange: 15
