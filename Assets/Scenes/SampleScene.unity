@@ -984,7 +984,7 @@ MonoBehaviour:
   aimKey: 324
   changeFireModeKey: 98
   weaponHolder: {fileID: 1053858329}
-  startingGun: {fileID: 2858383385769289546, guid: c92c0404936bd6c4c8cfef1788fd4ee2,
+  startingGun: {fileID: 279634022361924873, guid: d5526ae70d5f88e40b9710fcff0b7b42,
     type: 3}
   equippedGun: {fileID: 0}
 --- !u!81 &576362576
