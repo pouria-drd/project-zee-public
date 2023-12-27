@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ProjectZee
 {
-    [CreateAssetMenu(fileName = "GunDataSO", menuName = "Project Zee/New Gun Data", order = 0)]
+    [CreateAssetMenu(fileName = "New Gun", menuName = "Project Zee/Gun/New Gun", order = 0)]
     public class GunDataSO : ScriptableObject
     {
         #region Variables

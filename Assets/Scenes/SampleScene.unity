@@ -828,6 +828,7 @@ GameObject:
   - component: {fileID: 576362572}
   - component: {fileID: 576362574}
   - component: {fileID: 576362575}
+  - component: {fileID: 576362577}
   - component: {fileID: 576362571}
   - component: {fileID: 576362570}
   - component: {fileID: 576362569}
@@ -995,6 +996,19 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 576362568}
   m_Enabled: 1
+--- !u!114 &576362577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576362568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08a0a1e060ca07440a190aa41fc91250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoSlots: []
 --- !u!1 &598527742
 GameObject:
   m_ObjectHideFlags: 0
